@@ -1,5 +1,5 @@
 """
-ASGI config for thought_cloud project.
+ASGI config for diary-app project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'thought_cloud.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'diary-app.settings')
 
 application = get_asgi_application()
