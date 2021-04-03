@@ -1,2 +1,3 @@
-# thought-cloud
-The Thought Cloud, a web diary app project for Global Classroom developed by T3.
+# diary-app
+
+My online diary application. Log into the web app, create a personal diary and fill it with anything from writing, photos or other media.
