@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    {# Geolocation JS script #}
+    {% load static %}
+    <script type="text/javascript" src="{% static 'diary/geolocation.js' %}"></script>
   </head>
   <body>
     <div class="container">
@@ -17,6 +20,13 @@
       <p>Placeholder</p>
       <a class="btn btn-primary" href="{% url 'diary' %}">Back to diary</a>
       <a class="btn btn-primary" href="{% url 'edit' %}">Edit</a>
+
+      <br>
+      <div class="container">
+        <p>Current location: </p>
+        <span id="location-text">No location specified</span>
+        <button id="location-button" type="button" class="btn btn-secondary btn-sm">Add location</button>
+      </div>
     </div>
   </body>
 </html>
