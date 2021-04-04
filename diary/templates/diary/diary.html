@@ -15,9 +15,9 @@
     <div class="container">
       <br>
       <p>Placeholder</p>
-      <a class="btn btn-primary" href="/dashboard">Back to dashboard</a>
-      <a class="btn btn-primary" href="/diary/settings">Diary settings</a>
-      <a class="btn btn-primary" href="/diary/entry">Entry info</a>
+      <a class="btn btn-primary" href="{% url 'dashboard' %}">Back to dashboard</a>
+      <a class="btn btn-primary" href="{% url 'diary_config' %}">Diary settings</a>
+      <a class="btn btn-primary" href="{% url 'entry' %}">Entry info</a>
     </div>
   </body>
 </html>

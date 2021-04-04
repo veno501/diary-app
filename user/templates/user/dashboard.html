@@ -15,10 +15,10 @@
     <div class="container">
       <br>
       <p>{{ page_description }}</p>
-      <a class="btn btn-primary" href="/">Log out</a>
-      <a class="btn btn-primary" href="/diary">Go to diary</a>
-      <a class="btn btn-primary" href="/diary/settings">New diary</a>
-      <a class="btn btn-primary" href="/settings">User settings</a>
+      <a class="btn btn-primary" href="{% url 'index' %}">Log out</a>
+      <a class="btn btn-primary" href="{% url 'diary' %}">Go to diary</a>
+      <a class="btn btn-primary" href="{% url 'diary_config' %}">New diary</a>
+      <a class="btn btn-primary" href="{% url 'user_config' %}">User settings</a>
     </div>
   </body>
 </html>
