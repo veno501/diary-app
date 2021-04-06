@@ -7,4 +7,18 @@
   <a class="btn btn-primary" href="{% url 'diary' %}">Go to diary</a>
   <a class="btn btn-primary" href="{% url 'diary_config' %}">New diary</a>
   <a class="btn btn-primary" href="{% url 'user_config' %}">User settings</a>
+  <hr>
+
+  <p>Your diaries:</p>
+  {% if diary_list %}
+    <ul>
+      {% for diary in diary_list %}
+      <li>
+        {{ diary.title }} - {{ diary.id }}
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You have no diaries.</p>
+  {% endif %}
 {% endblock %}

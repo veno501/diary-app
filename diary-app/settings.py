@@ -127,3 +127,4 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.1/topics/auth/default/
 
 LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_URL = '/auth/login'
