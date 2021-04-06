@@ -3,5 +3,8 @@
 {% block title %}{{ block.super }}{% endblock %}
 
 {% block content %}
-  <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+  
+<p>Logged out!</p>
+<a class="btn btn-primary" href="{% url 'index' %}">Back to home page</a>
+
 {% endblock %}

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Thought Cloud</title>
+    <title>{% block title %}Diary App{% endblock %}</title>
 
     {# Bootstrap 4.0 files #}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -14,9 +14,10 @@
   <body>
     <div class="container">
       <br>
-      <p>Placeholder</p>
-      <a class="btn btn-primary" href="{% url 'register' %}">Registration</a>
-      <a class="btn btn-primary" href="{% url 'dashboard' %}">Submit login form</a>
+      <p>Current user is: {{ user }}</p>
+      <hr>
+      {% block content %}
+      {% endblock %}
     </div>
   </body>
 </html>

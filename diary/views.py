@@ -1,19 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 
 def diary(request):
-    template = loader.get_template('diary/diary.html')
-    return HttpResponse(template.render({'diary_name': 'My Diary'}, request))
+    return render(request, 'diary/diary.html', {'diary_name': 'My Diary'});
 
 def diary_config(request):
-    template = loader.get_template('diary/diary_config.html')
-    return HttpResponse(template.render({'diary_name': 'My Diary'}, request))
+    return render(request, 'diary/diary_config.html', {'diary_name': 'My Diary'});
 
 def entry(request):
-    template = loader.get_template('diary/entry.html')
-    return HttpResponse(template.render({'diary_name': 'My Diary'}, request))
+    return render(request, 'diary/entry.html', {'diary_name': 'My Diary'});
 
 def edit(request):
-    template = loader.get_template('diary/edit.html')
-    return HttpResponse(template.render({'diary_name': 'My Diary'}, request))
+    return render(request, 'diary/edit.html', {'diary_name': 'My Diary'});

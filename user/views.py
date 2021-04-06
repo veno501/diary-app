@@ -1,23 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 
 def index(request):
-    template = loader.get_template('user/index.html')
-    return HttpResponse(template.render({}, request))
+    return render(request, 'user/index.html');
 
 def dashboard(request):
-    template = loader.get_template('user/dashboard.html')
-    return HttpResponse(template.render({}, request))
+    return render(request, 'user/dashboard.html');
 
-def login(request):
-    template = loader.get_template('user/login.html')
-    return HttpResponse(template.render({}, request))
+#def login(request):
+#    return render(request, 'user/login.html');
 
 def register(request):
-    template = loader.get_template('user/register.html')
-    return HttpResponse(template.render({}, request))
+    return render(request, 'user/register.html');
 
 def user_config(request):
-    template = loader.get_template('user/user_config.html')
-    return HttpResponse(template.render({}, request))
+    return render(request, 'user/user_config.html');
