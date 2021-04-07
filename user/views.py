@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from diary.models import Diary
 
 def index(request):
+    if (request.user.is_authenticated):
+        return redirect('dashboard')
     return render(request, 'user/index.html');
 
 class DashboardView(LoginRequiredMixin, ListView):

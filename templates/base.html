@@ -14,8 +14,10 @@
   <body>
     <div class="container">
       <br>
+      {% if user.is_authenticated %}
       <p>Current user is: {{ user }}</p>
       <hr>
+      {% endif %}
       {% block content %}
       {% endblock %}
     </div>

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block content %}
+  <p>The page does not exist, or you do not have permission to access the page.</p>
+  <a class="btn btn-primary" href="{% url 'index' %}">Back to home page</a>
+{% endblock %}

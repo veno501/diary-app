@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ diary_name }}{% endblock %}
+{% block title %}{{ diary.title }}{% endblock %}
 
 {% block content %}
   <a class="btn btn-primary" href="{% url 'dashboard' %}">Back to dashboard</a>
-  <a class="btn btn-primary" href="{% url 'diary_config' %}">Diary settings</a>
-  <a class="btn btn-primary" href="{% url 'entry' %}">Entry info</a>
+  <a class="btn btn-primary" href="{% url 'diary_config' diary.id %}">Diary settings</a>
+  <a class="btn btn-secondary" href="{% url 'entry' diary.id %}">Entry info</a>
+
+  <hr>
+  {{ diary.title }} - {{ diary.id }}
 {% endblock %}

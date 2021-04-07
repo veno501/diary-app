@@ -3,7 +3,7 @@
 {% block title %}{{ block.super }} - Login{% endblock %}
 
 {% block content %}
-  <a class="btn btn-primary" href="{% url 'register' %}">Registration</a>
+  <a class="btn btn-secondary" href="{% url 'register' %}">Registration</a>
   <hr>
 
   {% if form.errors %}
@@ -31,7 +31,7 @@
         <td>{{ form.password }}</td>
       </tr>
     </table>
-    <input class="btn btn-secondary" type="submit" value="login" />
+    <input class="btn btn-primary" type="submit" value="login" />
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
 
