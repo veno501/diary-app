@@ -12,7 +12,7 @@ def index(request):
 class DashboardView(LoginRequiredMixin, ListView):
     model = Diary
     template_name = 'user/dashboard.html'
-    paginate_by = 1
+    #paginate_by = 4
 
     def get_queryset(self):
         return Diary.objects.filter(author=self.request.user).order_by('title')

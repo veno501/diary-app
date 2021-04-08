@@ -3,5 +3,5 @@
 {% block title %}{{ diary.title }}{% endblock %}
 
 {% block content %}
-  <a class="btn btn-primary" href="{% url 'entry' diary.id %}">Finish edit</a>
+  <a class="btn btn-primary" href="{% url 'entry' diary.uuid entry.uuid %}">Finish edit</a>
 {% endblock %}

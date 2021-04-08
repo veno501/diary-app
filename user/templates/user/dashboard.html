@@ -5,8 +5,7 @@
 {% block content %}
   <a class="btn btn-primary" href="{% url 'logout' %}">Log out</a>
   <a class="btn btn-primary" href="{% url 'user_config' %}">User settings</a>
-  {#<a class="btn btn-secondary" href="{% url 'diary' 1 %}">Go to diary</a>#}
-  <a class="btn btn-secondary" href="{% url 'diary_config' 1 %}">New diary</a>
+  <a class="btn btn-warning" href="#">New diary</a>
   <hr>
 
   <p>Your diaries:</p>
@@ -14,7 +13,7 @@
     <ul>
       {% for diary in diary_list %}
       <li>
-        <a href="{% url 'diary' diary.id %}">{{ diary.title }} - {{ diary.id }}</a>
+        <a href="{% url 'diary' diary.uuid %}">{{ diary.title }} - {{ diary.uuid }}</a>
       </li>
       {% endfor %}
     </ul>

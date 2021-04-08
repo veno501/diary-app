@@ -4,9 +4,23 @@
 
 {% block content %}
   <a class="btn btn-primary" href="{% url 'dashboard' %}">Back to dashboard</a>
-  <a class="btn btn-primary" href="{% url 'diary_config' diary.id %}">Diary settings</a>
-  <a class="btn btn-secondary" href="{% url 'entry' diary.id %}">Entry info</a>
+  <a class="btn btn-primary" href="{% url 'diary_config' diary.uuid %}">Diary settings</a>
+  {#<a class="btn btn-secondary" href="{% url 'entry' diary.uuid %}">Entry info</a>#}
 
   <hr>
-  {{ diary.title }} - {{ diary.id }}
+  {{ diary.title }} - {{ diary.uuid }}
+  <hr>
+
+  <p>This diary's entries:</p>
+  {% if entry_list %}
+    <ul>
+      {% for entry in entry_list %}
+      <li>
+        <a href="{% url 'entry' diary.uuid entry.uuid %}">{{ entry.title }} - {{ entry.uuid }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>This diary has no entries.</p>
+  {% endif %}
 {% endblock %}

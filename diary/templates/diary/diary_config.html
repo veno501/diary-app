@@ -3,6 +3,6 @@
 {% block title %}{{ diary.title }} - Settings{% endblock %}
 
 {% block content %}
-  <a class="btn btn-primary" href="{% url 'diary' diary.id %}">Back to diary</a>
+  <a class="btn btn-primary" href="{% url 'diary' diary.uuid %}">Back to diary</a>
   <hr>Settings for {{ diary.title }}
 {% endblock %}
