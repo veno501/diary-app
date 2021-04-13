@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     'diary.apps.DiaryConfig',
     'user.apps.UserConfig',
+    'tinymce',
 ]
 
 MIDDLEWARE = [

@@ -4,4 +4,18 @@
 
 {% block content %}
   <a class="btn btn-primary" href="{% url 'entry' diary.uuid entry.uuid %}">Finish edit</a>
+
+  {# TinyMCE JS scripts #}
+  {% load static %}
+  <script src="{% static 'diary/tinymce/tinymce.min.js' %}" referrerpolicy="origin"></script>
+  <script type="text/javascript" src="{% static 'diary/editor.js' %}"></script>
+
+  <hr>
+  <div class="row">
+    <div class="col bg-light">
+      <textarea class="editor">
+        Edit me
+      </textarea>
+    </div>
+  </div>
 {% endblock %}
