@@ -5,13 +5,20 @@
 {% block content %}
   <a class="btn btn-primary" href="{% url 'dashboard' %}">Back to dashboard</a>
   <a class="btn btn-primary" href="{% url 'diary_config' diary.uuid %}">Diary settings</a>
-  {#<a class="btn btn-secondary" href="{% url 'entry' diary.uuid %}">Entry info</a>#}
-
   <hr>
+
   {{ diary.title }} - {{ diary.uuid }}
   <hr>
 
-  <p>This diary's entries:</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="New entry">
+  </form>
+  <hr>
+
   {% if entry_list %}
     <ul>
       {% for entry in entry_list %}

@@ -5,10 +5,17 @@
 {% block content %}
   <a class="btn btn-primary" href="{% url 'logout' %}">Log out</a>
   <a class="btn btn-primary" href="{% url 'user_config' %}">User settings</a>
-  <a class="btn btn-warning" href="#">New diary</a>
   <hr>
 
-  <p>Your diaries:</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="New diary">
+  </form>
+  <hr>
+
   {% if diary_list %}
     <ul>
       {% for diary in diary_list %}

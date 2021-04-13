@@ -6,5 +6,6 @@ urlpatterns = [
     path('<uuid:diary_id>/settings/', views.diary_config, name='diary_config'),
     path('<uuid:diary_id>/entry/<uuid:entry_id>/', views.entry, name='entry'),
     path('<uuid:diary_id>/edit/<uuid:entry_id>/', views.edit, name='edit'),
+    path('<uuid:diary_id>/erase/<uuid:entry_id>/', views.entry, name='entry_delete'),
     path('missing/', views.missing, name='missing'),
 ]

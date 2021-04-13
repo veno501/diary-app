@@ -16,17 +16,17 @@ from uuid import uuid4
 #   theme 2: crimson red #AF6757 , salmon pink #BC968B
 
 class Diary(models.Model):
-    uuid = models.CharField(max_length=36, default=uuid4, null=False, blank=False)
+    uuid = models.CharField(max_length=36, default=uuid4, null=False)
     title = models.CharField(max_length=100)
-    themePreference = models.IntegerField(name='choice of color', default=0)
+    themePreference = models.IntegerField(default=0)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=False)
     def __str__(self):
         return self.title
 
 class Entry(models.Model):
-    uuid = models.CharField(max_length=36, null=False, blank=False)
+    uuid = models.CharField(max_length=36, default=uuid4, null=False)
     title = models.CharField(max_length=100)
-    dateTime = models.DateTimeField(name='date created', default=timezone.now)
+    dateTime = models.DateTimeField(default=timezone.now)
     parentDiary = models.ForeignKey(Diary, on_delete=models.CASCADE, null=True, blank=False)
     #content = HTMLField()
     def __str__(self):
