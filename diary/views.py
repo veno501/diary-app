@@ -26,7 +26,7 @@ def entry_required(f):
 @login_required
 @diary_required
 def diary(request, diary_id, diaryInstance):
-    entryList = Entry.objects.filter(parentDiary=diaryInstance).order_by('date created')
+    entryList = Entry.objects.filter(parentDiary=diaryInstance).order_by('dateTime')
 
     if request.method == 'POST':
         form = EntryCreationForm(request.POST)
