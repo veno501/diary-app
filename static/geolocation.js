@@ -11,11 +11,6 @@ function checkLocation(infoText) {
                     +'&lat='+position.coords.latitude+'&lon='+position.coords.longitude
                     +'&format=json&postaladdress=1&normalizeaddress=1&zoom=18';
 
-                /*var APIkey = 'AIzaSyBOIOzXhsIXYWNHe4DYxkkAzrhj3iOziyM';
-                var url = 'https://maps.googleapis.com/maps/api/geocode/json'
-                    +'?latlng='+position.coords.latitude+','+position.coords.longitude
-                    +'&key='+APIkey;*/
-
                 request.open('GET', url, true);
                 request.onreadystatechange = function(){
                     if (request.readyState == 4 && request.status == 200){
@@ -37,15 +32,15 @@ function checkLocation(infoText) {
 }
 
 function displayLocation(data, infoText) {
-    //var address = data.results[0];
-    //infoText.text = address.formatted_address;
     // road suburb city country | city_district locality state_district
     var address = data.address;
     var name = address.road ? address.road+', ' : '';
-    //name += address.suburb ? address.suburb+', ' : '';
     name += address.city ? address.city+', ' : '';
     name += address.country ? address.country : '';
     infoText.innerHTML = name;
+
+    locationInput = document.getElementById("id_location");
+    locationInput.value = name;
 }
 
 function handleLocationError(browserHasGeolocation, infoText) {
@@ -57,5 +52,6 @@ function handleLocationError(browserHasGeolocation, infoText) {
 window.onload = () => {
     var infoText = document.getElementById("location-text");
     var button = document.getElementById("location-button");
-    button.addEventListener("click", () => {checkLocation(infoText)});
+    if (button)
+        button.addEventListener("click", () => {checkLocation(infoText)});
 };
