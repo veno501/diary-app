@@ -32,6 +32,7 @@ def user_config(request):
         form = UserConfigForm(request.POST)
         if form.is_valid():
             request.user.theme = form.cleaned_data['theme']
+            request.user.font_size = form.cleaned_data['font_size']
             request.user.save()
             return redirect('dashboard')
     # else:

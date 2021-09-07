@@ -1,0 +1,91 @@
+
+/* base template styles */
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  /* font-family: "Cabin Sketch",cursive; !important */
+  font-weight:bold;
+}
+.navbar {
+  border-radius: 0px !important;
+}
+
+/* dashboard styles */
+
+.profile-icon {
+  transition: color 0.2s;
+  color: #ffffff
+}
+.profile-icon > i {
+  font-size: 1.6rem;
+}
+.profile-icon:hover {
+  color: #888888;
+}
+
+.filter-icon {
+  transition: color 0.2s;
+  color: #000000
+}
+.filter-icon:hover {
+  color: #888888;
+}
+
+#entry-list-wrapper > .card {
+  transition: background-color 0.2s;
+  background-color: #ffffff;
+}
+#entry-list-wrapper > .card:hover {
+  background-color: #eeeeee;
+}
+
+.create-entry-button {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 110px;
+  height: 70px;
+  z-index: 999;
+}
+
+/* entry editor styles */
+
+#save-entry-icon {
+  transition: color 0.2s;
+  color: #ffffff;
+}
+#save-entry-icon:hover {
+  color: #888888;
+}
+
+#delete-entry-icon {
+  transition: color 0.2s;
+  color: #dc3545;
+}
+#delete-entry-icon:hover {
+  color: #aa3d46;
+}
+
+.tox-dialog__title {
+  font-family:"Cabin Sketch",cursive !important;
+  font-weight:bold !important;
+}
+.tox, .tox-button {
+  font-family: Neucha,-apple-system,system-ui,BlinkMacSystemFont,
+    "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif !important;
+}
+button.tox-button {
+  border-radius: 25px !important;
+}
+
+/* index styles */
+
+.social-icon {
+  transition: color 0.2s;
+  color: #ffffff
+}
+.social-icon > i {
+  font-size: 2rem;
+}
+.social-icon:hover {
+  color: #888888;
+}

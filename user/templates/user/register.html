@@ -3,18 +3,6 @@
 {% block title %}{{ block.super }} - Register{% endblock %}
 
 {% block content %}
-  <!-- <a class="btn btn-primary btn-sm" href="{% url 'register' %}">Register</a>
-  <hr> -->
-
-  <!-- {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %} -->
-
   <div class="container-fluid bg-primary h-100">
     <div class="d-flex flex-column align-items-center mx-auto" style="max-width: 350px">
       <!-- <i class="mt-5 h1 bi bi-journal-richtext text-light"></i> -->
@@ -59,27 +47,15 @@
           </div>
           <div class="form-group mt-4">
             <label class="form-label">Pick a theme:</label>
-
             {{ form.theme }}
           </div>
 
           <div class="d-flex mt-4">
-            <!-- <a class="btn btn-outline-success" href="{% url 'logout' %}">Log out</a> -->
             <button type="submit" class="btn btn-success flex-grow-1">Sign up</button>
           </div>
 
-          <!-- <table>
-            <tr>
-              <td>{{ form.username.label_tag }}</td>
-              <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-              <td>{{ form.password.label_tag }}</td>
-              <td>{{ form.password }}</td>
-            </tr>
-          </table>
-          <input class="btn btn-primary" type="submit" /> -->
-          <!-- <input type="hidden" name="next" value="{{ next }}" /> -->
+          <input type="hidden" name="next" value="{{ next }}" />
+
         </form>
       </div>
       <div class="d-flex w-100 justify-content-center rounded-1 mt-4 bg-light">
@@ -89,5 +65,4 @@
 
     </div>
   </div>
-
 {% endblock %}

@@ -3,19 +3,54 @@
 {% block title %}{{ diary.title }}{% endblock %}
 
 {% block content %}
-  <a class="btn btn-primary" href="{% url 'entry' diary.uuid entry.uuid %}">Finish edit</a>
 
   {# TinyMCE JS scripts #}
-  {% load static %}
-  <script src="{% static 'diary/tinymce/tinymce.min.js' %}" referrerpolicy="origin"></script>
-  <script type="text/javascript" src="{% static 'diary/editor.js' %}"></script>
+  {{ form.media }}
 
-  <hr>
-  <div class="row">
-    <div class="col bg-light">
-      <textarea class="editor">
-        Edit me
-      </textarea>
+  <!-- <script type="text/javascript">
+    // this needs to be inline
+    // const _initial_content1 = "{# entry.content | escapejs #}";
+  </script> -->
+
+  {# editor and page setup script and data #}
+  <div>
+    <div id="template-data"
+      data-initial-content="{{ entry.content }}"
+      data-theme="{{ user.theme }}"
+      data-font-size="{{ user.font_size }}">
     </div>
   </div>
+  {% load static %}
+  <script type="text/javascript" src="{% static 'entry-editor-init.js' %}?r=1"></script>
+
+
+  <nav class="navbar navbar-dark bg-dark px-4" style="height:68px">
+    <div id="save-entry-icon" onclick="saveEntry()">
+      <i class="fs-4 bi bi-arrow-left"></i>
+    </div>
+    <div class="px-5">
+      <p class="h5 text-light m-0">{{ entry.dateTime | date:'D, M d' }}</p>
+    </div>
+    <div class="flex-grow-1"></div>
+    <!-- <div class="px-5">
+      <p class="fs-5 text-light m-0">{{ entry.title }}</p>
+    </div> -->
+    <div id="delete-entry-icon" onclick="deleteEntry()">
+      <i class="fs-4 bi bi-trash"></i>
+    </div>
+    <!-- <input class="btn btn-warning" type="submit" value="Save"> -->
+  </nav>
+
+  <form id="delete-form" action="{% url 'edit_entry' entry.uuid %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="delete_form" />
+  </form>
+
+  <form id="save-form" action="{% url 'edit_entry' entry.uuid %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="save_form" />
+    <textarea id="editor" name="editor">
+
+    </textarea>
+  </form>
 {% endblock %}

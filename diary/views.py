@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import DiaryEntry
-from .forms import EntryCreationForm
+from .forms import EntryCreationForm, EditorForm
 from user.forms import UserConfigForm
 
 def entry_required(f):
@@ -27,7 +27,7 @@ def dashboard(request):
                     location=form.cleaned_data['location'], author=request.user)
                 newEntry.save()
                 return redirect('edit_entry', entry_id=newEntry.uuid)
-            # if 'config_form' in request.POST
+            # if 'config_form' in request.POST:
                 # user.views.save_user_config(request.POST, request.user)
 
         # if method is GET
@@ -42,54 +42,45 @@ def dashboard(request):
 @login_required
 @entry_required
 def entry(request, entry_id, entryInstance):
-    if request.method == 'POST':
-        entryToDelete = DiaryEntry.objects.get(uuid=request.POST['delete'], author=request.user)
-        # imagesToDelete = Image.objects.filter(entry=entryToDelete)
-
-        # imagesToDelete.delete()
-        entryToDelete.delete()
-        return redirect('dashboard')
     return render(request, 'diary/entry.html', {'entry': entryInstance})
-
-# @login_required
-# def create_entry(request):
-#     if request.method == 'POST':
-#         form = EntryCreationForm(request.POST)
-#         if form.is_valid():
-#             newEntry = DiaryEntry(title=form.cleaned_data['title'], location=form.cleaned_data['location'], author=request.user)
-#             newEntry.save()
-#             return redirect('edit_entry', entry_id=newEntry.uuid)
-#     else:
-#         form = EntryCreationForm()
-#
-#     return render(request, 'diary/create_entry.html', {'date_created': timezone.now(), 'form': form})
 
 @login_required
 @entry_required
 def edit_entry(request, entry_id, entryInstance):
     if request.method == 'POST':
-        # If no error, then it is an autosave update
-        try:
-            request.POST['is_autosave_update']
+        # is it an autosave update from a JS script?
+        # if 'is_autosave_update' in request.POST:
+        #     entryInstance.content = request.POST['content']
+        #     entryInstance.save()
+        #     return JsonResponse(data={}, status=200)
 
-            entryInstance.content = request.POST['content']
-            entryInstance.save()
-            return JsonResponse(data={}, status=200)
-
-        except KeyError:
+        # is it an entry saving form?
+        if 'save_form' in request.POST:
             form = EditorForm(request.POST)
             if form._errors:
                 return redirect('missing', {'error': form._errors})
-
             content = form.data['editor']
             # files = form.files
             entryInstance.content = content
             entryInstance.save()
-            return redirect('entry', entry_id=entryInstance.uuid)
-    else:
-        form = EditorForm()
-    return render(request, 'diary/edit.html', {'entry': entryInstance, 'form': form,
-        'initial_content': entryInstance.content})
+            return redirect('dashboard')
+        # or is it an entry deleting form?
+        if 'delete_form' in request.POST:
+            entryToDelete = DiaryEntry.objects.get(uuid=entry_id, author=request.user)
+            # imagesToDelete = Image.objects.filter(entry=entryToDelete)
+            # imagesToDelete.delete()
+            entryToDelete.delete()
+            return redirect('dashboard')
+    # if method is GET
+    form = EditorForm()
+    return render(request, 'diary/edit_entry.html', {'entry': entryInstance, 'form': form})
+
+# @login_required
+# @entry_required
+def geolocation(request):
+    # is it an autosave update from a JS script?
+    latlng = request.POST['content']
+    return JsonResponse(data={'address': 'one two three road', 'country': 'uzbekistan'}, status=200)
 
 def missing(request):
     return render(request, 'diary/missing.html')

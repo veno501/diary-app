@@ -2,19 +2,9 @@
 
 {% block title %}{{ block.super }} - Dashboard{% endblock %}
 
+{% load static %}
+
 {% block content %}
-  <!-- <a class="btn btn-primary" href="{% url 'logout' %}">Log out</a>
-  <a class="btn btn-primary" href="{% url 'user_config' %}">User settings</a>
-  <hr> -->
-
-  <!-- <form action="" method="post">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="New entry">
-  </form> -->
-
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid py-1 px-4">
       <div class="w-25">
@@ -80,7 +70,7 @@
     </div>
     <hr class="mt-0">
 
-    <div id="entry-list-wrapper" class="d-flex flex-column">
+    <div id="entry-list-wrapper" class="d-flex flex-column-reverse">
       <div class="card border-dark w-100 my-1">
         <div class="card-body">
           <p class="fs-6 card-title">Today I ate a frog</p>
@@ -168,54 +158,12 @@
   {% endif %}
 
 
+  {# Geolocation JS script and data #}
+  <div id="geolocation-data"
+    data-api-key="pk.bed5305a2a6bf4f89206a15ce7b08170"
+    data-api-url="https://eu1.locationiq.com/v1/reverse.php">
+  </div>
   {% load static %}
-  {# Geolocation JS script #}
   <script type="text/javascript" src="{% static 'geolocation.js' %}"></script>
 
-  <style media="screen">
-    .profile-icon {
-      transition: color 0.2s;
-      color: #ffffff
-    }
-    .profile-icon > i {
-      font-size: 1.6rem;
-    }
-    .profile-icon:hover {
-      color: #888888;
-    }
-
-    .filter-icon {
-      transition: color 0.2s;
-      color: #000000
-    }
-    .filter-icon:hover {
-      color: #888888;
-    }
-
-    #entry-list-wrapper > div {
-      transition: background-color 0.2s;
-      background-color: #ffffff;
-    }
-    #entry-list-wrapper > div:hover {
-      background-color: #eeeeee;
-    }
-
-    .create-entry-button {
-      position: fixed;
-      bottom: 0px;
-      right: 0px;
-      width: 110px;
-      height: 70px;
-      z-index: 999;
-    }
-  </style>
-
-  <script type="text/javascript">
-    function reverseEntrySortOrder() {
-      document.getElementById('entry-list-wrapper').classList
-        .toggle('flex-column-reverse')
-      document.getElementById('entry-list-wrapper').classList
-        .toggle('flex-column')
-    }
-  </script>
 {% endblock %}

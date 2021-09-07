@@ -5,8 +5,8 @@ function checkLocation(infoText) {
             (position) => {
                 var request = new XMLHttpRequest();
 
-                var APIkey = _api_key;
-                var url = _api_domain
+                var APIkey = 'pk.bed5305a2a6bf4f89206a15ce7b08170';
+                var url = 'https://eu1.locationiq.com/v1/reverse.php'
                     +'?key='+APIkey
                     +'&lat='+position.coords.latitude+'&lon='+position.coords.longitude
                     +'&format=json&postaladdress=1&normalizeaddress=1&zoom=18';
@@ -50,11 +50,6 @@ function handleLocationError(browserHasGeolocation, infoText) {
 }
 
 window.onload = () => {
-    const _api_key = document.getElementById('geolocation-data')
-      .getAttribute('data-api-key');
-    const _api_domain = document.getElementById('geolocation-data')
-      .getAttribute('data-api-domain');
-
     var infoText = document.getElementById("location-text");
     var button = document.getElementById("location-button");
     if (button)

@@ -10,7 +10,3 @@ class EntryCreationForm(forms.Form):
 
 class EditorForm(forms.Form):
     content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
-
-# class DiaryCreationForm(forms.Form):
-#     title = forms.CharField(max_length=100, label='Diary title', initial='A Diary')
-#     color = forms.IntegerField(label='Your theme', initial=0)

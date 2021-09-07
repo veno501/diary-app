@@ -5,14 +5,10 @@
 {% block content %}
   {# Geolocation JS script #}
   {% load static %}
-  <script type="text/javascript" src="{% static 'diary/geolocation.js' %}"></script>
+  <script type="text/javascript" src="{% static 'geolocation.js' %}"></script>
 
-  <a class="btn btn-primary" href="{% url 'diary' diary.uuid %}">Back to diary</a>
-  <a class="btn btn-secondary" href="{% url 'edit' diary.uuid entry.uuid %}">Edit</a>
-  <hr>
   <div class="container-fluid">
-    <p>Current location: </p>
-    <span id="location-text">No location specified</span>
-    <button id="location-button" type="button" class="btn btn-success btn-sm">Add location</button>
+    <p>{{ entry.title }}</p>
+    <p>{{ entry.dateTime }}</p>
   </div>
 {% endblock %}

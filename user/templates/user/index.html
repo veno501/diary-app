@@ -3,10 +3,6 @@
 {% block title %}{{ block.super }}{% endblock %}
 
 {% block content %}
-  <!-- <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
-  <a class="btn btn-primary" href="{% url 'register' %}">Register</a> -->
-  {% load static %}
-
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid py-1 px-4">
       <a class="navbar-brand" href="#">Diary App</a>
@@ -39,6 +35,7 @@
     <a class="btn btn-dark ps-1 mb-5" href="{% url 'dashboard' %}">
       <i class="mx-1 bi bi-box-arrow-in-right"></i> Get Started
     </a>
+    {% load static %}
     <img class="img-fluid d-block mx-auto rounded" src="{% static 'images/iconBackground.gif' %}">
   </div>
 
@@ -66,18 +63,4 @@
     </div>
     <p class="text-light text-center">Portfolio App Created by Veno B.</p>
   </footer>
-
-
-  <style media="screen">
-    .social-icon {
-      transition: color 0.2s;
-      color: #ffffff
-    }
-    .social-icon > i {
-      font-size: 2rem;
-    }
-    .social-icon:hover {
-      color: #888888;
-    }
-  </style>
 {% endblock %}
