@@ -9,6 +9,5 @@ urlpatterns = [
     # path('create/', views.create_entry, name='create_entry'),
     path('<uuid:entry_id>/', views.entry, name='entry'),
     path('<uuid:entry_id>/edit', views.edit_entry, name='edit_entry'),
-    path('missing/', views.missing, name='missing'),
 ]
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

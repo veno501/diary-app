@@ -19,29 +19,39 @@
             </a>
           </div>
 
-          <div id="user-config-modal" class="modal fade">
+          <div id="user-config-modal" class="modal fade" data-bs-backdrop="static" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <!-- <h5 class="modal-title">Modal title</h5> -->
+                  <h5 class="modal-title">Settings</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <span class="">Username: </span>
-                  {{ user.username }}
-                  <p>You cannot change your password.</p>
 
                   <form method="post" action="{% url 'user_config' %}" enctype="multipart/form-data">
                     {% csrf_token %}
 
+                    <label>Account</label>
+                    <div class="d-flex align-items-center px-3 py-2 mb-2">
+                      <div class="me-3">
+                        <i class="fs-1 mx-1 bi bi-person-circle"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <span class="fs-3">{{ user.username }}</span>
+                      </div>
+                      <div class="">
+                        <a class="btn btn-sm btn-outline-danger" href="{% url 'logout' %}">Log out</a>
+                      </div>
+                    </div>
                     {{ config_form.theme.label_tag }}
-                    <div class="ms-1">{{ config_form.theme }}</div>
-
+                    <div class="px-3 py-2 mb-4">
+                      {{ config_form.theme }}
+                    </div>
                     {{ config_form.font_size.label_tag }}
-                    <div class="ms-1">{{ config_form.font_size }}</div>
-
+                    <div class="px-3 py-2 mb-4">
+                      {{ config_form.font_size }}
+                    </div>
                     <div class="text-end mt-5">
-                      <a class="btn btn-outline-danger" href="{% url 'logout' %}">Log out</a>
                       <button type="submit" name="config_form" class="btn btn-secondary">Save changes</button>
                     </div>
                   </form>
@@ -62,42 +72,51 @@
     </div>
   </nav>
 
-  <div class="container mt-5 px-sm-5" style="max-width: 950px">
+  <div class="container mt-5 px-sm-5" style="max-width: 900px">
     <div class="d-flex px-3">
       <p class="fs-5 flex-grow-1">Your Entries</p>
       <i class="filter-icon mx-1 bi bi-sort-down fs-3"
+        data-bs-toggle="tooltip" data-bs-placement="top" title="Reverse order"
         onclick="reverseEntrySortOrder()"></i>
     </div>
     <hr class="mt-0">
 
     <div id="entry-list-wrapper" class="d-flex flex-column-reverse">
-      <div class="card border-dark w-100 my-1">
+      <!-- <div class="card border-light w-100 my-1">
         <div class="card-body">
           <p class="fs-6 card-title">Today I ate a frog</p>
           <h6 class="card-subtitle mb-2 text-muted">5. 9. 2021, 2:06 pm</h6>
-          <!-- <p class="card-text"></p> -->
-          <i class="mx-1 bi bi-emoji-smile"></i>
-          <i class="mx-1 bi bi-geo-alt"></i>Šiška, Ljubljana, Slovenia
+          <span class="mx-1">🙂</span>
+          <i class="mx-1 bi bi-geo-alt-fill"></i>Šiška, Ljubljana, Slovenia
           <a href="{% url 'dashboard' %}" class="stretched-link"></a>
         </div>
-      </div>
+        <hr class="my-0">
+      </div> -->
       {% if user.is_authenticated %}
         {% if entry_list %}
         {% for entry in entry_list %}
 
-          <div class="card border-dark w-100 my-1">
+          <div class="card border-light w-100 my-1">
             <div class="card-body">
               <p class="fs-6 card-title">{{ entry.title }}</p>
-              <h6 class="card-subtitle mb-2 text-muted">{{ entry.dateTime|date:'D, M d'|upper }}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{ entry.date_time | date:'F d, Y - f A' | upper }}</h6>
               <!-- <p class="card-text"></p> -->
               {% if entry.mood %}
-                <i class="mx-1 bi bi-{{ entry.mood }}"></i>
+                <!-- <i class="mx-1 bi bi-{{ entry.mood }}"></i> -->
+                {% if entry.mood == 1 %}
+                  <span class="mx-1">🙂</span>
+                {% elif entry.mood == 2 %}
+                  <span class="mx-1">😶</span>
+                {% elif entry.mood == 3 %}
+                  <span class="mx-1">🙁</span>
+                {% endif %}
               {% endif %}
               {% if entry.location %}
-                <i class="mx-1 bi bi-geo-alt"></i>{{ entry.location }}
+                <i class="mx-1 bi bi-geo-alt-fill"></i>{{ entry.location }}
               {% endif %}
               <a href="{% url 'edit_entry' entry.uuid %}" class="stretched-link"></a>
             </div>
+            <hr class="my-0">
           </div>
 
         {% endfor %}
@@ -105,8 +124,8 @@
       {% else %}
         <div class="text-center">
           <p class="">Log in to make your first entry.</p>
-          <a class="text-muted fst-italic" href="{% url 'login' %}">
-            You can use a Demo account here. Your progress will not be saved.</a>
+          <a class="text-muted fst-italic" href="{% url 'demo_login' %}">
+            You can use a Guest account here. Your progress will not be saved.</a>
         </div>
       {% endif %}
     </div>
@@ -118,11 +137,11 @@
         <i class="bi bi-plus"> New</i></a>
     </div>
 
-    <div id="create-entry-modal" class="modal fade">
+    <div id="create-entry-modal" class="modal fade" data-bs-backdrop="static" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <!-- <h5 class="modal-title">Modal title</h5> -->
+            <h5 class="modal-title">New Entry</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -130,19 +149,26 @@
             <form method="post" action="{% url 'dashboard' %}" enctype="multipart/form-data">
               {% csrf_token %}
 
-              {{ creation_form.title.label_tag}}
-              {{ creation_form.title }}
+              {{ creation_form.title.label_tag }}
+              <div class="px-3 pt-2">
+                {{ creation_form.title }}
+              </div>
               <br>
-              <span>Date created:</span>
-              <span class="h4">{% now "D, M d, Y" %}</span>
-              <br>
-              <span>Entry location:</span>
-              <span class="fs-5" id="location-text"></span>
+              <p class="h5 text-center">{% now "F d, Y - f A" %}</p>
+              <div class="pt-4"></div>
+              {{ creation_form.mood.label_tag }}
+              {{ creation_form.mood }}
+              <div class="pt-4"></div>
+              {{ creation_form.location.label_tag }}
               {{ creation_form.location.as_hidden }}
-              <button id="location-button" type="button" class="btn btn-secondary btn-sm">Add location</button>
-
-              <div class="text-end mt-5">
-                <button type="submit" name="creation_form" class="btn btn-primary">Create entry</button>
+              <br>
+              <div id="location-container" class="pt-1">
+                <span class="fs-5 text-center ps-4" id="location-text"></span>
+                <button id="location-button" type="button" class="btn btn-secondary btn-sm">Add a Location</button>
+              </div>
+              <br><br>
+              <div class="text-end">
+                <button type="submit" name="creation_form" class="btn btn-outline-success">Create entry</button>
               </div>
             </form>
 
@@ -160,8 +186,8 @@
 
   {# Geolocation JS script and data #}
   <div id="geolocation-data"
-    data-api-key="pk.bed5305a2a6bf4f89206a15ce7b08170"
-    data-api-url="https://eu1.locationiq.com/v1/reverse.php">
+    data-api-domain="{{ api_domain }}"
+    data-api-key="{{ api_key }}">
   </div>
   {% load static %}
   <script type="text/javascript" src="{% static 'geolocation.js' %}"></script>

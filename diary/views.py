@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.http import HttpResponseNotFound
 from .models import DiaryEntry
 from .forms import EntryCreationForm, EditorForm
 from user.forms import UserConfigForm
@@ -9,7 +11,7 @@ def entry_required(f):
         try:
             entryInstance = DiaryEntry.objects.get(uuid=entry_id, author=request.user)
         except:
-            return redirect('missing')
+            return HttpResponseNotFound('Entry missing')
         return f(request, entry_id, *args, **kwargs, entryInstance=entryInstance)
     return wrap_function
 
@@ -24,18 +26,21 @@ def dashboard(request):
             form = EntryCreationForm(request.POST)
             if form.is_valid():
                 newEntry = DiaryEntry(title=form.cleaned_data['title'],
-                    location=form.cleaned_data['location'], author=request.user)
+                    location=form.cleaned_data['location'],
+                    mood=form.cleaned_data['mood'], author=request.user)
                 newEntry.save()
                 return redirect('edit_entry', entry_id=newEntry.uuid)
             # if 'config_form' in request.POST:
                 # user.views.save_user_config(request.POST, request.user)
 
         # if method is GET
-        entryList = DiaryEntry.objects.filter(author=request.user).order_by('dateTime')
-        creationForm = EntryCreationForm()
+        entryList = DiaryEntry.objects.filter(author=request.user).order_by('date_time')
+        creationForm = EntryCreationForm(initial={'mood': '2'})
         configForm = UserConfigForm(initial={'theme': request.user.theme, 'font_size': request.user.font_size})
         return render(request, 'diary/dashboard.html', {'entry_list': entryList,
-            'creation_form': creationForm, 'config_form': configForm})
+            'creation_form': creationForm, 'config_form': configForm,
+            'api_domain': settings.GEOLOCATION_API_DOMAIN,
+            'api_key': settings.GEOLOCATION_API_KEY})
     else:
         return render(request, 'diary/dashboard.html', {})
 
@@ -74,13 +79,3 @@ def edit_entry(request, entry_id, entryInstance):
     # if method is GET
     form = EditorForm()
     return render(request, 'diary/edit_entry.html', {'entry': entryInstance, 'form': form})
-
-# @login_required
-# @entry_required
-def geolocation(request):
-    # is it an autosave update from a JS script?
-    latlng = request.POST['content']
-    return JsonResponse(data={'address': 'one two three road', 'country': 'uzbekistan'}, status=200)
-
-def missing(request):
-    return render(request, 'diary/missing.html')

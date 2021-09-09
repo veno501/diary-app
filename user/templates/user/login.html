@@ -5,7 +5,12 @@
 {% block content %}
   <div class="container-fluid bg-primary h-100">
     <div class="d-flex flex-column align-items-center mx-auto" style="max-width: 350px">
-      <i class="mt-5 h1 bi bi-journal-richtext text-light"></i>
+
+      <div class="d-flex justify-content-center align-items-center mt-3 mb-5">
+        <!-- <i class="fs-1 bi bi-journal-richtext text-light mb-0 ms-3"></i> -->
+        <!-- <a class="btn btn-sm btn-outline-light py-0" href="{% url 'demo_login' %}">Guest Login</a> -->
+      </div>
+
       <p class="h4 my-3 text-light">Sign in to Diary App</p>
 
       <div class="rounded-1 w-100 p-4 bg-light">
@@ -46,6 +51,8 @@
       <div class="d-flex w-100 justify-content-center rounded-1 mt-4 bg-light">
         <p class="m-2">New user?
           <a class="text-success" href="{% url 'register' %}">Create an account.</a></p>
+        <a class="btn btn-sm btn-outline-secondary py-0 ms-2 align-self-center"
+          href="{% url 'demo_login' %}">Guest Login</a>
       </div>
 
     </div>

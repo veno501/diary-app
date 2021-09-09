@@ -9,4 +9,5 @@ urlpatterns = [
     # path('dashboard/', views.dashboard, name='dashboard'),
     path('register/', views.register, name='register'),
     path('settings/', views.user_config, name='user_config'),
+    path('demo/', views.demo_login, name='demo_login'),
 ]

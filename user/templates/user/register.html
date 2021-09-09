@@ -17,18 +17,16 @@
             <div class="form-group">
               <label class="form-label">Pick a username:</label>
               <!-- form.username -->
-              {{ form.username }}
-              <!-- <input class="form-control" type="text" name="username" autofocus
-                autocapitalize="none" autocomplete="username" maxlength="254" required id="id_username"> -->
+              <input class="form-control" type="text" name="username"
+                autofocus required maxlength="20" minlength="4" id="id_username">
             </div>
           {% else %}
             <div class="form-group has-danger">
               <label class="form-label">Pick a username:</label>
               <!-- form.username -->
-              {{ form.username }}
-              <!-- <input class="form-control is-invalid" type="text" name="username" autofocus
-                autocapitalize="none" autocomplete="username" maxlength="254" required id="id_username"> -->
-              <div class="invalid-feedback">{{ form.errors | first }}</div>
+              <input class="form-control is-invalid" type="text" name="username"
+                autofocus required maxlength="20" minlength="4" id="id_username">
+              <div class="invalid-feedback">This username is already in use.</div>
             </div>
           {% endif %}
           <div class="form-group mt-4">

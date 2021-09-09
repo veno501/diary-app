@@ -27,7 +27,8 @@ tinymce.init({
   // for displaying content only
   readonly: false,
   init_instance_callback: function(editor) {
-    // set entry content from database
+    document.getElementById('loading-editor-spinner').style.display = 'none';
+      // set entry content from database
     editor.setContent(_initial_content);
 
     // use this for autosaving - sends a post request on every change
@@ -61,9 +62,9 @@ tinymce.init({
   paste_retain_style_properties: '',
   // using custom font sizes
   fontsize_formats: 'Small=12pt Medium=16pt Large=20pt',
-  toolbar: 'undo redo preview | bold italic underline strikethrough ' +
+  toolbar: 'undo redo | bold italic underline strikethrough ' +
     'backcolor | fontsizeselect | ' + // outdent indent emoticons media
-    'bullist emoticons media',
+    'bullist emoticons media preview',
   mobile: {
     toolbar_mode: 'wrap',
   },

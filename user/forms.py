@@ -17,19 +17,16 @@ class RegisterForm(UserCreationForm):
         label='Username', min_length=4, max_length=20,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': '',
             'required': 'true',
     }))
     password1 = forms.CharField(label='Password', min_length=5, max_length=20,
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
-            'placeholder': '',
             'required': 'True',
     }))
     password2 = forms.CharField(label='Repeat password', min_length=5, max_length=20,
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
-            'placeholder': '',
             'required': 'True',
     }))
     theme = forms.ChoiceField(label='Theme', choices=UserThemes.choices,
@@ -44,7 +41,9 @@ class RegisterForm(UserCreationForm):
         try:
             match = UserModel.objects.get(username=username)
         except UserModel.DoesNotExist:
-            return username
+            # Check if username is not the Demo user's username
+            if username != 'Guest':
+                return username
 
         raise forms.ValidationError('This username is already in use.')
 
@@ -58,10 +57,10 @@ class UserConfigForm(forms.Form):
     theme = forms.ChoiceField(
         label='Theme',
         choices=UserThemes.choices,
-        widget=forms.Select(attrs={'class': ''})
+        widget=forms.Select(attrs={'class': 'form-select'})
     )
     font_size = forms.ChoiceField(
         label='Font size',
         choices=FontSizes.choices,
-        widget=forms.Select(attrs={'class': ''})
+        widget=forms.Select(attrs={'class': 'form-select'})
     )

@@ -26,7 +26,7 @@ SECRET_KEY = '!tzlhik_t%cr90_hcqigbprol)xtcx-n$3vv$&xli#6lney6($'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -143,3 +143,8 @@ LOGIN_URL = 'login'
 
 AUTH_USER_MODEL = 'user.UserModel'
 SITE_ID = 1
+
+# Geolocation API
+
+GEOLOCATION_API_DOMAIN = 'https://eu1.locationiq.com/v1/reverse.php'
+GEOLOCATION_API_KEY = 'pk.bed5305a2a6bf4f89206a15ce7b08170'

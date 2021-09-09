@@ -21,21 +21,24 @@
     </div>
   </div>
   {% load static %}
-  <script type="text/javascript" src="{% static 'entry-editor-init.js' %}?r=1"></script>
+  <script type="text/javascript" src="{% static 'entry-editor-init.js' %}"></script>
 
 
   <nav class="navbar navbar-dark bg-dark px-4" style="height:68px">
-    <div id="save-entry-icon" onclick="saveEntry()">
+    <div id="save-entry-icon" onclick="saveEntry()"
+      data-bs-toggle="tooltip" data-bs-placement="right" title="Save changes">
       <i class="fs-4 bi bi-arrow-left"></i>
     </div>
-    <div class="px-5">
-      <p class="h5 text-light m-0">{{ entry.dateTime | date:'D, M d' }}</p>
+    <div class="px-5 flex-grow-1 text-start text-light">
+      <p id="date-long" class="h5 m-0">{{ entry.date_time | date:'F d, Y - f A' }}</p>
+      <p id="date-short" class="h5 m-0">{{ entry.date_time | date:'M d, Y - f A' }}</p>
     </div>
-    <div class="flex-grow-1"></div>
+    <!-- <div class="flex-grow-1"></div> -->
     <!-- <div class="px-5">
       <p class="fs-5 text-light m-0">{{ entry.title }}</p>
     </div> -->
-    <div id="delete-entry-icon" onclick="deleteEntry()">
+    <div id="delete-entry-icon" onclick="deleteEntry()"
+      data-bs-toggle="tooltip" data-bs-placement="left" title="Delete entry">
       <i class="fs-4 bi bi-trash"></i>
     </div>
     <!-- <input class="btn btn-warning" type="submit" value="Save"> -->
@@ -53,4 +56,10 @@
 
     </textarea>
   </form>
+
+  <div class="d-flex justify-content-center">
+    <div id="loading-editor-spinner" class="spinner-border m-5" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 {% endblock %}
