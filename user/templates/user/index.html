@@ -3,10 +3,10 @@
 {% block title %}{{ block.super }}{% endblock %}
 
 {% block content %}
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-tinted">
     <div class="container-fluid py-1 px-4">
-      <a class="navbar-brand" href="#">Diary App</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items-collapse">
+      <a class="navbar-brand" href="#">diary-app</a>
+      <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items-collapse">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -30,29 +30,30 @@
     </div>
   </nav>
 
-  <div class="container text-center"> <!--style="max-width:800px"-->
-    <p class="h2 py-4">Your personal diary.<p>
-    <a class="btn btn-dark ps-1 mb-5" href="{% url 'dashboard' %}">
-      <i class="mx-1 bi bi-box-arrow-in-right"></i> Get Started
-    </a>
-    {% load static %}
-    <img class="img-fluid d-block mx-auto rounded" src="{% static 'images/iconBackground.png' %}">
+  <div class="bg-tinted">
+    <div class="container text-center"> <!--style="max-width:800px"-->
+      <p class="h2 py-4">Your personal diary.<p>
+        <a class="btn bg-button ps-1 mb-5" href="{% url 'dashboard' %}">
+          <i class="mx-1 bi bi-box-arrow-in-right"></i> Get Started
+        </a>
+        {% load static %}
+        <img class="img-fluid d-block mx-auto rounded mt-5" src="{% static 'images/iconBackground.png' %}">
+      </div>
+
+      <div class="container text-center py-5">
+        <figure>
+          <blockquote class="blockquote">
+            <p class="mb-0">Journal writing is a voyage to the interior.</p>
+          </blockquote>
+          <figcaption class="blockquote-footer text-light fw-normal">
+            <cite title="Source Title">Christina Baldwin</cite>
+          </figcaption>
+        </figure>
+      </div>
+      <br>
   </div>
 
-  <div class="container text-center py-5">
-    <figure>
-      <blockquote class="blockquote">
-        <p class="mb-0">Journal writing is a voyage to the interior.</p>
-      </blockquote>
-      <figcaption class="blockquote-footer">
-        <cite title="Source Title">Christina Baldwin</cite>
-      </figcaption>
-    </figure>
-  </div>
-
-  <br>
-
-  <footer class="container-fluid bg-dark text-light">
+  <footer class="container-fluid bg-button">
     <div class="d-flex justify-content-center p-0">
       <a class="social-icon p-3" href="#">
         <i class="bi bi-instagram"></i></a>
@@ -61,6 +62,7 @@
       <a class="social-icon p-3" href="#">
         <i class="bi bi-github"></i></a>
     </div>
-    <p class="text-light text-center">Portfolio App Created by Veno B.</p>
+    <p class="text-light text-center m-0">Portfolio App Created by Veno B.</p>
+    <br>
   </footer>
 {% endblock %}

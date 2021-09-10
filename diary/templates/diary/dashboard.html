@@ -5,15 +5,15 @@
 {% load static %}
 
 {% block content %}
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm bg-tinted">
     <div class="container-fluid py-1 px-4">
       <div class="w-25">
       </div>
-      <a class="navbar-brand w-auto" href="#">Diary App</a>
+      <a class="navbar-brand w-auto bg-tinted" href="#">diary-app</a>
       <div class="w-25 pe-2">
         {% if user.is_authenticated %}
           <div class="d-flex justify-content-end align-items-center">
-            <span class="fs-6 text-light">{{ user.username }}</span>
+            <span class="fs-6 bg-tinted">{{ user.username }}</span>
             <a class="profile-icon" data-bs-toggle="modal" data-bs-target="#user-config-modal">
               <i class="mx-1 bi bi-person-circle"></i>
             </a>
@@ -21,8 +21,8 @@
 
           <div id="user-config-modal" class="modal fade" data-bs-backdrop="static" aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
+              <div class="modal-content bg-basic">
+                <div class="modal-header bg-basic">
                   <h5 class="modal-title">Settings</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -52,7 +52,7 @@
                       {{ config_form.font_size }}
                     </div>
                     <div class="text-end mt-5">
-                      <button type="submit" name="config_form" class="btn btn-secondary">Save changes</button>
+                      <button type="submit" name="config_form" class="btn bg-button">Save changes</button>
                     </div>
                   </form>
 
@@ -79,7 +79,7 @@
         data-bs-toggle="tooltip" data-bs-placement="top" title="Reverse order"
         onclick="reverseEntrySortOrder()"></i>
     </div>
-    <hr class="mt-0">
+    <hr id="entry-list-hr" class="mt-0">
 
     <div id="entry-list-wrapper" class="d-flex flex-column-reverse">
       <!-- <div class="card border-light w-100 my-1">
@@ -96,7 +96,7 @@
         {% if entry_list %}
         {% for entry in entry_list %}
 
-          <div class="card border-light w-100 my-1">
+          <div class="card border-none w-100 my-1 bg-basic">
             <div class="card-body">
               <p class="fs-6 card-title">{{ entry.title }}</p>
               <h6 class="card-subtitle mb-2 text-muted">{{ entry.date_time | date:'F d, Y - f A' | upper }}</h6>
@@ -124,7 +124,7 @@
       {% else %}
         <div class="text-center">
           <p class="">Log in to make your first entry.</p>
-          <a class="text-muted fst-italic" href="{% url 'demo_login' %}">
+          <a class="fst-italic text-muted" href="{% url 'demo_login' %}">
             You can use a Guest account here. Your progress will not be saved.</a>
         </div>
       {% endif %}
@@ -133,14 +133,14 @@
 
   {% if user.is_authenticated %}
     <div class="create-entry-button">
-      <a class="btn btn-primary btn-lg rounded" data-bs-toggle="modal" data-bs-target="#create-entry-modal">
+      <a class="btn btn-lg rounded bg-button-tinted" data-bs-toggle="modal" data-bs-target="#create-entry-modal">
         <i class="bi bi-plus"> New</i></a>
     </div>
 
     <div id="create-entry-modal" class="modal fade" data-bs-backdrop="static" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
+        <div class="modal-content bg-basic">
+          <div class="modal-header bg-basic">
             <h5 class="modal-title">New Entry</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -164,11 +164,11 @@
               <br>
               <div id="location-container" class="pt-1">
                 <span class="fs-5 text-center ps-4" id="location-text"></span>
-                <button id="location-button" type="button" class="btn btn-secondary btn-sm">Add a Location</button>
+                <button id="location-button" type="button" class="btn bg-button btn-sm">Add a Location</button>
               </div>
               <br><br>
               <div class="text-end">
-                <button type="submit" name="creation_form" class="btn btn-outline-success">Create entry</button>
+                <button type="submit" name="creation_form" class="btn bg-button-tinted">Create entry</button>
               </div>
             </form>
 
@@ -178,7 +178,7 @@
     </div>
   {% else %}
     <div class="create-entry-button">
-      <a class="btn btn-primary btn-lg rounded" href="{% url 'login' %}">
+      <a class="btn btn-lg rounded bg-button-tinted" href="{% url 'login' %}">
         <i class="bi bi-box-arrow-in-right fst-normal"> Login</i></a>
     </div>
   {% endif %}

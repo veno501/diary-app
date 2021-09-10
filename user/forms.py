@@ -57,10 +57,10 @@ class UserConfigForm(forms.Form):
     theme = forms.ChoiceField(
         label='Theme',
         choices=UserThemes.choices,
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(attrs={'class': 'form-select bg-basic bg-select'})
     )
     font_size = forms.ChoiceField(
         label='Font size',
         choices=FontSizes.choices,
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(attrs={'class': 'form-select bg-basic bg-select'})
     )

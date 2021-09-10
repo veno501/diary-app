@@ -38,8 +38,8 @@ function checkLocation(infoText) {
 function displayLocation(data, infoText) {
     // road suburb city country | city_district locality state_district
     var address = data.address;
-    var name = address.road ? address.road+', ' : '';
-    name += address.city ? address.city+', ' : '';
+    // var name = address.road ? address.road+', ' : '';
+    var name = address.city ? address.city+', ' : '';
     name += address.country ? address.country : '';
     infoText.innerHTML = name;
 

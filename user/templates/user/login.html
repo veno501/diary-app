@@ -3,7 +3,7 @@
 {% block title %}{{ block.super }} - Login{% endblock %}
 
 {% block content %}
-  <div class="container-fluid bg-primary h-100">
+  <div class="container-fluid bg-tinted" style="height:100vh">
     <div class="d-flex flex-column align-items-center mx-auto" style="max-width: 350px">
 
       <div class="d-flex justify-content-center align-items-center mt-3 mb-5">
@@ -11,9 +11,9 @@
         <!-- <a class="btn btn-sm btn-outline-light py-0" href="{% url 'demo_login' %}">Guest Login</a> -->
       </div>
 
-      <p class="h4 my-3 text-light">Sign in to Diary App</p>
+      <p class="h4 my-3">Sign in to diary-app</p>
 
-      <div class="rounded-1 w-100 p-4 bg-light">
+      <div class="rounded-1 w-100 p-4 bg-basic">
         <form id="login" method="post" action="{% url 'login' %}" enctype="multipart/form-data">
           {% csrf_token %}
 
@@ -41,17 +41,17 @@
           </div>
 
           <div class="d-flex mt-4">
-            <button type="submit" class="btn btn-success flex-grow-1">Sign in</button>
+            <button type="submit" class="btn bg-button flex-grow-1">Sign in</button>
           </div>
 
           <input type="hidden" name="next" value="{{ next }}" />
 
         </form>
       </div>
-      <div class="d-flex w-100 justify-content-center rounded-1 mt-4 bg-light">
-        <p class="m-2">New user?
-          <a class="text-success" href="{% url 'register' %}">Create an account.</a></p>
-        <a class="btn btn-sm btn-outline-secondary py-0 ms-2 align-self-center"
+      <div class="d-flex w-100 justify-content-center rounded-1 mt-4 bg-basic">
+        <p class="m-2 text-muted">New user?
+          <a class="" href="{% url 'register' %}">Create an account.</a></p>
+        <a class="btn btn-sm btn-outline-dark py-0 ms-2 align-self-center"
           href="{% url 'demo_login' %}">Guest Login</a>
       </div>
 

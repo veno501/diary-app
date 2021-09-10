@@ -7,12 +7,7 @@
   {# TinyMCE JS scripts #}
   {{ form.media }}
 
-  <!-- <script type="text/javascript">
-    // this needs to be inline
-    // const _initial_content1 = "{# entry.content | escapejs #}";
-  </script> -->
-
-  {# editor and page setup script and data #}
+  {# Editor and page setup script and data #}
   <div>
     <div id="template-data"
       data-initial-content="{{ entry.content }}"
@@ -24,12 +19,12 @@
   <script type="text/javascript" src="{% static 'entry-editor-init.js' %}"></script>
 
 
-  <nav class="navbar navbar-dark bg-dark px-4" style="height:68px">
+  <nav class="navbar navbar-dark px-4 bg-title" style="height:68px">
     <div id="save-entry-icon" onclick="saveEntry()"
       data-bs-toggle="tooltip" data-bs-placement="right" title="Save changes">
       <i class="fs-4 bi bi-arrow-left"></i>
     </div>
-    <div class="px-5 flex-grow-1 text-start text-light">
+    <div class="px-5 flex-grow-1 text-start">
       <p id="date-long" class="h5 m-0">{{ entry.date_time | date:'F d, Y - f A' }}</p>
       <p id="date-short" class="h5 m-0">{{ entry.date_time | date:'M d, Y - f A' }}</p>
     </div>

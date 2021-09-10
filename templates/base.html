@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html style="height:100vh">
+{% if user.is_authenticated and user.theme == 2 %}
+<html class="dark-mode">
+{% else %}
+<html>
+{% endif %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,8 +40,7 @@
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.2/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"> -->
 
   </head>
-  <body style="height:100vh">
-
+  <body class="bg-basic">
     {% block content %}
     {% endblock %}
 
