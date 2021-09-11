@@ -8,16 +8,6 @@
 <p align="center">Fill entries with your writing, anything from text to images, location data or other media.</p>
 <br>
 
-### Test user credentials
-
-`Username: testuser`  
-`Password: testpassword`
-
-### Admin credentials
-
-`Username: admin`  
-`Password: admin`
-
 ### Resources
 
 Tree Video by Oleg Magni from Pexels.com  
